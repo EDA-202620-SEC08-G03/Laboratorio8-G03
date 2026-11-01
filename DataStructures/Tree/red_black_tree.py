@@ -136,3 +136,34 @@ def size(my_rbt):
     if my_rbt["root"] is None:
         return 0    
     return size_tree(my_rbt["root"])
+
+def is_empty(my_rbt):
+    return my_rbt["root"] is None
+
+
+def key_set_tree(root, key_list):
+    if root is not None:
+        key_set_tree(root["left"], key_list)
+        sll.add_last(key_list, rn.get_key(root))
+        key_set_tree(root["right"], key_list)
+    return key_list
+
+
+def key_set(my_rbt):
+    if my_rbt["root"] is None:
+        return sll.new_list()
+    return key_set_tree(my_rbt["root"], sll.new_list())
+
+
+def value_set_tree(root, value_list):
+    if root is not None:
+        value_set_tree(root["left"], value_list)
+        sll.add_last(value_list, rn.get_value(root))
+        value_set_tree(root["right"], value_list)
+    return value_list
+
+
+def value_set(my_rbt):
+    if my_rbt["root"] is None:
+        return sll.new_list()
+    return value_set_tree(my_rbt["root"], sll.new_list())
