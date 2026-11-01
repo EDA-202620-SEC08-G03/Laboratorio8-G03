@@ -117,24 +117,28 @@ def get_node(root, key):
         return get_node(root["left"], key)
     elif cmp > 0:
         return get_node(root["right"], key)
-    return rn.get_value(root)
+    else:
+        return rn.get_value(root)
 
 
 def get(my_rbt, key):
     if my_rbt["root"] is None:
         return None
+    
     return get_node(my_rbt["root"], key)
 
 
 def contains(my_rbt, key):
     if my_rbt["root"] is None:
         return False
+    
     return get(my_rbt, key) is not None
 
 
 def size(my_rbt):
     if my_rbt["root"] is None:
         return 0    
+    
     return size_tree(my_rbt["root"])
 
 def is_empty(my_rbt):
@@ -146,12 +150,14 @@ def key_set_tree(root, key_list):
         key_set_tree(root["left"], key_list)
         sll.add_last(key_list, rn.get_key(root))
         key_set_tree(root["right"], key_list)
+        
     return key_list
 
 
 def key_set(my_rbt):
     if my_rbt["root"] is None:
         return sll.new_list()
+    
     return key_set_tree(my_rbt["root"], sll.new_list())
 
 
@@ -160,12 +166,14 @@ def value_set_tree(root, value_list):
         value_set_tree(root["left"], value_list)
         sll.add_last(value_list, rn.get_value(root))
         value_set_tree(root["right"], value_list)
+        
     return value_list
 
 
 def value_set(my_rbt):
     if my_rbt["root"] is None:
         return sll.new_list()
+    
     return value_set_tree(my_rbt["root"], sll.new_list())
 
 def get_min_node(root):
@@ -173,12 +181,14 @@ def get_min_node(root):
         return None
     if root["left"] is None:
         return rn.get_key(root)
+    
     return get_min_node(root["left"])
 
 
 def get_min(my_rbt):
     if my_rbt["root"] is None:
         return None
+    
     return get_min_node(my_rbt["root"])
 
 
@@ -187,6 +197,7 @@ def get_max_node(root):
         return None
     if root["right"] is None:
         return rn.get_key(root)
+    
     return get_max_node(root["right"])
 
 
@@ -195,3 +206,55 @@ def get_max(my_rbt):
         return None
     
     return get_max_node(my_rbt["root"])
+
+def height_tree(root):
+    if root is None:
+        return 0
+    
+    return max(height_tree(root["left"]), height_tree(root["right"])) + 1
+
+
+def height(my_rbt):
+    if my_rbt["root"] is None:
+        return 0
+    
+    return height_tree(my_rbt["root"])
+
+
+def keys_range(root, key_initial, key_final, list_key):
+    if root is not None:
+        key = rn.get_key(root)
+        if key_initial < key:
+            keys_range(root["left"], key_initial, key_final, list_key)
+        if key_initial <= key <= key_final:
+            sll.add_last(list_key, key)
+        if key < key_final:
+            keys_range(root["right"], key_initial, key_final, list_key)
+            
+    return list_key
+
+
+def keys(my_rbt, key_initial, key_final):
+    if my_rbt["root"] is None:
+        return sll.new_list()
+    
+    return keys_range(my_rbt["root"], key_initial, key_final, sll.new_list())
+
+
+def values_range(root, key_initial, key_final, value_list):
+    if root is None:
+        return value_list
+    
+    key = rn.get_key(root)
+    if key_initial < key:
+        values_range(root["left"], key_initial, key_final, value_list)
+    if key_initial <= key <= key_final:
+        sll.add_last(value_list, rn.get_value(root))
+    if key < key_final:
+        values_range(root["right"], key_initial, key_final, value_list)
+        
+def values(my_rbt, key_initial, key_final):
+    if my_rbt["root"] is None:
+        return sll.new_list()
+    
+    return values_range(my_rbt["root"], key_initial, key_final, sll.new_list())
