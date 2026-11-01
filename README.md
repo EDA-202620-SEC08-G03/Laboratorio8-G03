@@ -26,7 +26,7 @@ Este repositorio forma parte del marco docente de estructura de datos y algoritm
 
 Los estudiantes editan esta sección para agregar sus nombres, correos electrónicos de Uniandes y especificar qué funcionalidad de proyecto implementarán.
 
-Juan Andrés Ospina Ramirez - J.ospinar2@uniandes.edu.co - 202614830
+Juan Andrés Ospina Ramirez - j.ospinar2@uniandes.edu.co - 202614830
 Jose Alexander Santos Cobos - j.santosc2@uniandes.edu.co -  202613656
 Juan Esteban Lesmes Chaves - je.lesmesc1@uniandes.edu.co - 202614029
 

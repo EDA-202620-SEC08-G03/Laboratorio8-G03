@@ -75,12 +75,10 @@ def rotate_right(node_rbt):
     
     return x
 
-
 def insert_node(root, key, value):
     if root is None:
         return rn.new_node(key, value)
 
-    
     if default_compare(key, root) < 0:
         root["left"] = insert_node(root["left"], key, value)
         
