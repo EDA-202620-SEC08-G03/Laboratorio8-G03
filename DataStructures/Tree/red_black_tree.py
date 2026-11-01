@@ -1,4 +1,5 @@
 from DataStructures.Tree import rbt_node as rn
+from DataStructures.List import single_linked_list as sll
 
 
 def new_map():
@@ -107,3 +108,31 @@ def put(my_rbt, key, value):
     rn.change_color(my_rbt["root"], rn.BLACK)
     
     return my_rbt
+
+def get_node(root, key):
+    if root is None:
+        return None
+    cmp = default_compare(key, root)
+    if cmp < 0:
+        return get_node(root["left"], key)
+    elif cmp > 0:
+        return get_node(root["right"], key)
+    return rn.get_value(root)
+
+
+def get(my_rbt, key):
+    if my_rbt["root"] is None:
+        return None
+    return get_node(my_rbt["root"], key)
+
+
+def contains(my_rbt, key):
+    if my_rbt["root"] is None:
+        return False
+    return get(my_rbt, key) is not None
+
+
+def size(my_rbt):
+    if my_rbt["root"] is None:
+        return 0    
+    return size_tree(my_rbt["root"])
