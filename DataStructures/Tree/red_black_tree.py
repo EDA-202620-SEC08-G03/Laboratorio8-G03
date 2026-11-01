@@ -167,3 +167,31 @@ def value_set(my_rbt):
     if my_rbt["root"] is None:
         return sll.new_list()
     return value_set_tree(my_rbt["root"], sll.new_list())
+
+def get_min_node(root):
+    if root is None:
+        return None
+    if root["left"] is None:
+        return rn.get_key(root)
+    return get_min_node(root["left"])
+
+
+def get_min(my_rbt):
+    if my_rbt["root"] is None:
+        return None
+    return get_min_node(my_rbt["root"])
+
+
+def get_max_node(root):
+    if root is None:
+        return None
+    if root["right"] is None:
+        return rn.get_key(root)
+    return get_max_node(root["right"])
+
+
+def get_max(my_rbt):
+    if my_rbt["root"] is None:
+        return None
+    
+    return get_max_node(my_rbt["root"])

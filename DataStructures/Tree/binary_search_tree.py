@@ -134,10 +134,11 @@ def get_min_node(root):
     
     raiz = root
     
-    while raiz["left"] is not None:
-        raiz = raiz["left"]
-        
-    return bnode.get_key(raiz)
+    if raiz is None:
+        return None
+    if raiz["left"] is None:
+        return bnode.get_key(raiz)
+    return get_min_node(raiz["left"])
 
 def get_min(my_bst):
     if my_bst["root"] is not None:
@@ -150,10 +151,11 @@ def get_max_node(root):
     
     raiz = root
     
-    while raiz["right"] is not None:
-        raiz = raiz["right"]
-        
-    return bnode.get_key(raiz)
+    if raiz is None:
+        return None
+    if raiz["right"] is None:
+        return bnode.get_key(raiz)
+    return get_max_node(raiz["right"])
 
 def get_max(my_bst):
     
