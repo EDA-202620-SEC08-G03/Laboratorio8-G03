@@ -30,7 +30,7 @@ import datetime
 
 from DataStructures.Tree import red_black_tree as rbt
 from DataStructures.List import array_list as al
-from DataStructures.Map import linear_probing as lp
+from DataStructures.Map import map_linear_probing as lp
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
