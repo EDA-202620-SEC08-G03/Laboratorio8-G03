@@ -248,7 +248,7 @@ def get_crimes_by_range_area(analyzer, initialArea, finalArea):
     totalcrimes = 0
     actual = lista["first"]
     while actual is not None:
-        totalcrimes +=ar.size(actual["lstcrimes"])
+        totalcrimes +=al.size(actual["lstcrimes"])
         actual = actual["next"]
     return totalcrimes
 
