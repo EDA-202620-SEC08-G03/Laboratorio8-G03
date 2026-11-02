@@ -246,10 +246,9 @@ def get_crimes_by_range_area(analyzer, initialArea, finalArea):
     finalArea = int(finalArea)
     lista = rbt.values(analyzer["areaIndex"], initialArea, finalArea)
     totalcrimes = 0
-    actual = lista["first"]
-    while actual is not None:
-        totalcrimes +=ar.size(actual["lstcrimes"])
-        actual = actual["next"]
+    for actual in lista["elements"]:
+        totalcrimes += al.size(actual["lstcrimes"])
+        
     return totalcrimes
 
 def get_crimes_by_range(analyzer, initialDate, finalDate):
@@ -261,7 +260,7 @@ def get_crimes_by_range(analyzer, initialDate, finalDate):
     lst = rbt.values(analyzer["dateIndex"], initialDate.date(), finalDate.date())
     totalcrimes = 0
     for crime in lst["elements"]:
-        totalcrimes += al.size(crime["info"])
+        totalcrimes += al.size(crime["lstcrimes"])
     return totalcrimes
 
 
