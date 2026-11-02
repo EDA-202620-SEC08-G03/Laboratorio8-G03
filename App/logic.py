@@ -30,8 +30,8 @@ import datetime
 
 from DataStructures.Tree import red_black_tree as rbt
 from DataStructures.List import array_list as al
-from DataStructures.Map import linear_probing as lp
-
+from DataStructures.Map import map_linear_probing as lp
+from DataStructures.List import single_linked_list as sll
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
 
@@ -200,14 +200,14 @@ def min_key(analyzer):
     """
     Llave mas pequena
     """
-    return rbt.left_key(analyzer["dateIndex"])
+    return rbt.get_min(analyzer["dateIndex"])
 
 
 def max_key(analyzer):
     """
     Llave mas grande
     """
-    return rbt.right_key(analyzer["dateIndex"])
+    return rbt.get_max(analyzer["dateIndex"])
 
 
 def index_height_areas(analyzer):
@@ -246,8 +246,10 @@ def get_crimes_by_range_area(analyzer, initialArea, finalArea):
     finalArea = int(finalArea)
     lista = rbt.values(analyzer["areaIndex"], initialArea, finalArea)
     totalcrimes = 0
-    for lista in lista["elements"]:
-        totalcrimes += al.size(lista)
+    actual = lista["first"]
+    while actual is not None:
+        totalcrimes +=ar.size(actual["lstcrimes"])
+        actual = actual["next"]
     return totalcrimes
 
 def get_crimes_by_range(analyzer, initialDate, finalDate):
@@ -258,8 +260,8 @@ def get_crimes_by_range(analyzer, initialDate, finalDate):
     finalDate = datetime.datetime.strptime(finalDate, '%Y-%m-%d')
     lst = rbt.values(analyzer["dateIndex"], initialDate.date(), finalDate.date())
     totalcrimes = 0
-    for lstdate in lst["elements"]:
-        totalcrimes += al.size(lstdate["lstcrimes"])
+    for crime in lst["elements"]:
+        totalcrimes += al.size(crime["info"])
     return totalcrimes
 
 

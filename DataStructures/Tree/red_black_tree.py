@@ -1,5 +1,5 @@
 from DataStructures.Tree import rbt_node as rn
-from DataStructures.List import single_linked_list as sll
+from DataStructures.List import  array_list as ar
 
 
 def new_map():
@@ -151,7 +151,7 @@ def size(my_rbt):
 def key_set_tree(root, key_list):
     if root is not None:
         key_set_tree(root["left"], key_list)
-        sll.add_last(key_list, rn.get_key(root))
+        ar.add_last(key_list, rn.get_key(root))
         key_set_tree(root["right"], key_list)
         
     return key_list
@@ -159,16 +159,16 @@ def key_set_tree(root, key_list):
 
 def key_set(my_rbt):
     if is_empty(my_rbt):
-        return sll.new_list()
+        return ar.new_list()
     
-    return key_set_tree(my_rbt["root"], sll.new_list())
+    return key_set_tree(my_rbt["root"], ar.new_list())
 
 
 def value_set_tree(root, value_list):
     if root is None:
         return value_list
     value_set_tree(root["left"], value_list)
-    sll.add_last(value_list, rn.get_value(root))
+    ar.add_last(value_list, rn.get_value(root))
     value_set_tree(root["right"], value_list)
     
     return value_list
@@ -176,10 +176,10 @@ def value_set_tree(root, value_list):
 
 def value_set(my_rbt):
     if is_empty(my_rbt):
-        return sll.new_list()
+        return ar.new_list()
     
-    return value_set_tree(my_rbt["root"], sll.new_list())
-
+    return value_set_tree(my_rbt["root"], ar.new_list())
+    
 def get_min_node(root):
     if root is None:
         return None
@@ -232,7 +232,7 @@ def keys_range(root, key_initial, key_final, list_key):
     if key_initial < key:
         keys_range(root["left"], key_initial, key_final, list_key)
     if key_initial <= key <= key_final:
-        sll.add_last(list_key, key)
+        ar.add_last(list_key, key)
     if key < key_final:
         keys_range(root["right"], key_initial, key_final, list_key)
             
@@ -241,9 +241,9 @@ def keys_range(root, key_initial, key_final, list_key):
 
 def keys(my_rbt, key_initial, key_final):
     if is_empty(my_rbt):
-        return sll.new_list()
+        return ar.new_list()
     
-    return keys_range(my_rbt["root"], key_initial, key_final, sll.new_list())
+    return keys_range(my_rbt["root"], key_initial, key_final, ar.new_list())
 
 
 def values_range(root, key_initial, key_final, value_list):
@@ -254,7 +254,7 @@ def values_range(root, key_initial, key_final, value_list):
     if key_initial < key:
         values_range(root["left"], key_initial, key_final, value_list)
     if key_initial <= key <= key_final:
-        sll.add_last(value_list, rn.get_value(root))
+        ar.add_last(value_list, rn.get_value(root))
     if key < key_final:
         values_range(root["right"], key_initial, key_final, value_list)
         
@@ -262,9 +262,9 @@ def values_range(root, key_initial, key_final, value_list):
         
 def values(my_rbt, key_initial, key_final):
     if is_empty(my_rbt):
-        return sll.new_list()
+        return ar.new_list()
     
-    return values_range(my_rbt["root"], key_initial, key_final, sll.new_list())
+    return values_range(my_rbt["root"], key_initial, key_final, ar.new_list())
 
 def balance(node_rbt):
     if is_red(node_rbt["right"]) and not is_red(node_rbt["left"]):
