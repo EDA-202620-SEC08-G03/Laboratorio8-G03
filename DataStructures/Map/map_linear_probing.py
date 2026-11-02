@@ -140,3 +140,24 @@ def key_set(my_map):
         if entry["key"] is not None and entry["key"] != "__EMPTY__":
             al.add_last(keys, entry["key"])
     return keys
+
+def is_empty(my_map):
+    return my_map["size"] == 0
+
+
+def is_available(table, pos):
+    entry = al.get_element(table, pos)
+    if entry["key"] is None or entry["key"] == "__EMPTY__":
+        return True
+    
+    return False
+
+
+def value_set(my_map):
+    values = al.new_list()
+    for i in range(al.size(my_map["table"])):
+        entry = al.get_element(my_map["table"], i)
+        if entry["key"] is not None and entry["key"] != "__EMPTY__":
+            al.add_last(values, entry["value"])
+    
+    return values
